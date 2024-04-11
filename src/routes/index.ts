@@ -40,14 +40,15 @@ export default defineEventHandler(async (event) => {
   const body = await getBodyBuffer(event);
   const token = await createTokenIfNeeded(event);
 
-  const destination = decrypt(rawdestination)
-  if(!destination.includes('shegu.net')) return await sendJson({
-    event,
-    status: 403,
-    data: {
-      error: 'Invalid resource token',
-    },
-  });
+  const destination = decrypt(rawdestination);
+  if (!destination.includes('shegu.net'))
+    return await sendJson({
+      event,
+      status: 403,
+      data: {
+        error: 'Invalid resource token',
+      },
+    });
 
   // proxy
   try {
