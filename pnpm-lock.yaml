@@ -8,6 +8,12 @@ overrides:
   rollup: npm:@rollup/wasm-node
 
 dependencies:
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   h3:
     specifier: ^1.10.0
     version: 1.10.0
@@ -745,6 +751,10 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
+    dev: false
+
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: false
@@ -1353,6 +1363,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

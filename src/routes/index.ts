@@ -1,4 +1,5 @@
 import { getBodyBuffer } from '@/utils/body';
+import { decrypt } from '@/utils/encryption';
 import {
   getProxyHeaders,
   getAfterResponseHeaders,
@@ -15,8 +16,9 @@ export default defineEventHandler(async (event) => {
   if (isPreflightRequest(event)) return handleCors(event, {});
 
   // parse destination URL
-  const destination = getQuery<{ destination?: string }>(event).destination;
-  if (!destination)
+  const rawdestination = getQuery<{ destination?: string }>(event).destination;
+
+  if (!rawdestination)
     return await sendJson({
       event,
       status: 200,
@@ -39,6 +41,15 @@ export default defineEventHandler(async (event) => {
   // read body
   const body = await getBodyBuffer(event);
   const token = await createTokenIfNeeded(event);
+
+  const destination = decrypt(rawdestination)
+  if(!destination.includes('shegu.net')) return await sendJson({
+    event,
+    status: 403,
+    data: {
+      error: 'Invalid destination',
+    },
+  });
 
   // proxy
   try {
