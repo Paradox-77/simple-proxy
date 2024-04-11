@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   if (!rawdestination)
     return await sendJson({
       event,
-      status: 403,
+      status: 200,
       data: {
         message: `Invalid resource token`,
       },
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
   if (!destination.includes('shegu.net'))
     return await sendJson({
       event,
-      status: 403,
+      status: 200,
       data: {
         error: 'Invalid resource token',
       },
