@@ -16,16 +16,14 @@ export default defineEventHandler(async (event) => {
   if (isPreflightRequest(event)) return handleCors(event, {});
 
   // parse destination URL
-  const rawdestination = getQuery<{ destination?: string }>(event).destination;
+  const rawdestination = getQuery<{ resource?: string }>(event).resource;
 
   if (!rawdestination)
     return await sendJson({
       event,
-      status: 200,
+      status: 403,
       data: {
-        message: `Proxy is working as expected (v${
-          useRuntimeConfig(event).version
-        })`,
+        message: `Invalid resource token`,
       },
     });
 
@@ -47,7 +45,7 @@ export default defineEventHandler(async (event) => {
     event,
     status: 403,
     data: {
-      error: 'Invalid destination',
+      error: 'Invalid resource token',
     },
   });
 
